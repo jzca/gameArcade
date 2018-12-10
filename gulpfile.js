@@ -7,9 +7,19 @@ const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 
+gulp.task('default', ['copyHTML', 'csswork', 'babel', 'concatUglify','imgmin'], function () {
+	gulp.watch('src/index.html', ['copyHTML'])
+	gulp.watch('src/css/*.css', ['csswork']);
+	gulp.watch("src/js/*.js", ['babel', 'concatUglify'])
+	browserSync.init({
+		server: 'dist'
+	});
+});
+
 gulp.task('copyHTML', function () {
 	gulp.src('src/index.html')
-			.pipe(gulp.dest('dist'));
+		.pipe(gulp.dest('dist'))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('csswork', () => {
@@ -19,7 +29,8 @@ gulp.task('csswork', () => {
 			cascade: false
 		}))
 		.pipe(cleanCSS())
-		.pipe(gulp.dest('dist/css'));
+		.pipe(gulp.dest('dist/css'))
+		.pipe(browserSync.stream())
 });
 
 gulp.task('imgmin', () => {
@@ -36,11 +47,13 @@ gulp.task('babel', () =>
 		presets: ['@babel/env']
 	}))
 	.pipe(gulp.dest('dist/js'))
+	.pipe(browserSync.stream())
 );
 
 gulp.task('concatUglify', () =>
-gulp.src(['src/js/resources.js', 'dist/js/app.js', 'src/js/engine.js'])
-.pipe(concat('main.js'))
-.pipe(uglify())
-.pipe(gulp.dest('dist/js'))
+	gulp.src(['src/js/resources.js', 'dist/js/app.js', 'src/js/engine.js'])
+	.pipe(concat('main.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'))
+	.pipe(browserSync.stream())
 );
