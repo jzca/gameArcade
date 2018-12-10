@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
-const cleanCss = require('gulp-clean-css');
+const cleanCSS = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
@@ -16,6 +16,11 @@ gulp.task('cssfix',()=> {
 		.pipe(gulp.dest('dist/css'));
 })
 
+gulp.task('cssmin',()=> {
+	return gulp.src('dist/css/*.css')
+	.pipe(cleanCSS())
+	.pipe(gulp.dest('dist/css'));
+})
 
 
 
