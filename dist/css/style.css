@@ -1,0 +1,40 @@
+body {
+	text-align: center;
+	overflow: hidden;
+}
+
+#guide-1, #guide-2 {
+	font-size: 20px;
+	background-color: lightgreen;
+	margin: 0 0;
+}
+
+.control {
+	font-size: 15px;
+	margin-top:5px;
+	background-color: lightcoral;
+}
+
+h1 {
+	font-size: 25px;
+}
+
+h4 {
+	font-size: 20px;
+}
+
+.main-txt {
+	position: absolute;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	max-width: 370px;
+	max-height: 100px;
+	top: 45px;
+	left: 10px;
+}
+
+
+
+
